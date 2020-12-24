@@ -1,0 +1,35 @@
+.signUp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  height: 100vh;  
+  background-color: white;
+}
+
+.signUp img{
+  width: 80px;
+  border-radius: 15px 0;
+}
+
+.signUp__firstName{
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.signUp__confirmPassword{
+  margin-top: -1px;
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.signUp__lastName, 
+.signUp__email,
+.signUp__password{
+  margin-top: -1px;
+  border-radius: 0;
+}
+

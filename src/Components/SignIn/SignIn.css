@@ -1,0 +1,35 @@
+.signIn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  height: 100vh;  
+  background-color: white;
+}
+
+.signIn > form{
+  width: 100%;
+  max-width: 330px;
+}
+
+.signIn img{
+  width: 80px;
+  border-radius: 15px 0;
+}
+
+.signIn h1{
+  font-weight: 400;
+}
+
+.signIn input[type=email]{
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.signIn input[type=password]{
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

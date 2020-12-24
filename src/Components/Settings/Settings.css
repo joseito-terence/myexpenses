@@ -1,0 +1,20 @@
+.settings{
+  margin-bottom: 60px;
+}
+
+.delete-btn > div{
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 992px){
+  .settings{
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1180px){
+  .settings{
+    width: 60%;
+  }
+}

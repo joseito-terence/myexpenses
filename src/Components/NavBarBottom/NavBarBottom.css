@@ -1,0 +1,41 @@
+.bottomNavBar {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 15px 0;
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+}
+
+.navButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1;
+  height: 60px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.navButton:hover {
+  color: #03a9f4;
+  text-decoration: none;
+}
+
+.navButton__active {
+  color: #03a9f4;
+}
+
+.navButton__icon svg {
+  width: 22px;
+}
+
+.navButton__title {
+  font-size: 12px;
+}

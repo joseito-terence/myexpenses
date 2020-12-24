@@ -1,0 +1,25 @@
+.records .card {
+  background-color: #0000006b;
+}
+
+
+.records h2 button {
+  color: white;
+  font-size: 1.50rem;
+}
+
+.records h2 button:hover {
+  color: white;
+  
+}
+
+.card-body > .accordion button {
+  font-size: 1.25rem;
+}
+
+
+@media screen and (min-width: 992px){
+  .records{
+    width: 50%;
+  }
+}
