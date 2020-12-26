@@ -1,39 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# myExpenses
+<p align="center">
+    <img src="public/logo192.png" alt="Logo" width="80" height="80">
 
-## Available Scripts
+  <h2 align="center">myExpenses</h2>
 
-In the project directory, you can run:
+  <p align="center">
+    myExpenses an expense tracker build with ReactJS and Firebase.
+    <br />
+    Developed By: <strong>Joseito Fernandes</strong>
+    <br />
+    <br />
+    <a href="https://myexpenses2.web.app/">View Demo</a>
+    ·
+    <a href="https://github.com/joseito-terence/myexpenses/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/joseito-terence/myexpenses/issues">Request Feature</a>
+  </p>
+</p>
+<br>
 
-### `npm start`
+## About The Project
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="images/Screenshot-home-screen.png" alt="Screenshot-home-page">
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+myExpenses is an easy to use expense tracking web app. 
+It was originally built using PHP and MySQL in the year 2018 during my first year at college and is hosted at [myexpenses.epizy.com](https://myexpenses.epizy.com). And later in 2020 decided to shift the code base to ReactJS.
 
-### `npm test`
+<img src="images/Screenshot-mobile-screens.png" alt="Screenshot-mobile-screens">
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Built With
 
-### `npm run build`
+Following are the major frameworks and libraries used to build this project.
+* [ReactJS](https://reactjs.org/)
+* [Firebase](https://firebase.google.com/)
+* [Bootstrap](https://getbootstrap.com)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To get a local copy up and running follow these simple example steps.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/joseito-terence/myexpenses.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Start NPM server.
+   ```sh
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
