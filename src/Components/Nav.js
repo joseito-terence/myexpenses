@@ -3,7 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import { auth } from "../firebase";
 
 function Nav() {
-  const isRunningStandalone = window.matchMedia("(display-mode: standalone)").matches;
+  const isRunningStandalone = window.matchMedia("(display-mode: standalone) and (min-width: 992px)").matches;
+
   let userName = auth.currentUser.displayName?.split(' ')[0];
 
   auth.onAuthStateChanged(user => userName = user.displayName?.split(' ')[0]);

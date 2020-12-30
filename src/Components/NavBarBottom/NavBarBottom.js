@@ -8,8 +8,7 @@ import { ReactComponent as BookIcon } from "../../Icons/book-open-solid.svg";
 import { ReactComponent as StatsIcon } from "../../Icons/chart-line-solid.svg";
 
 function NavBarBottom() {
-  const isRunningStandalone = window.matchMedia("(display-mode: standalone)")
-    .matches;
+  const isRunningStandalone = window.matchMedia("(display-mode: standalone) and (min-width: 992px)").matches;
 
   return (
     <>
