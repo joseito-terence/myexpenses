@@ -5,8 +5,6 @@ import { auth } from "../../firebase";
 
 
 function Nav() {
-  const isStandaloneLarge = window.matchMedia("(max-width: 992px) and (display-mode: standalone)").matches;
-
   let userName = auth.currentUser.displayName?.split(' ')[0];
 
   auth.onAuthStateChanged(user => userName = user.displayName?.split(' ')[0]);
