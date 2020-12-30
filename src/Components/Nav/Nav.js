@@ -1,17 +1,15 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { auth } from "../firebase";
+import "./Nav.css";
+import { auth } from "../../firebase";
+
 
 function Nav() {
-  const isRunningStandalone = window.matchMedia("(display-mode: standalone) and (min-width: 992px)").matches;
+  const isStandaloneLarge = window.matchMedia("(max-width: 992px) and (display-mode: standalone)").matches;
 
   let userName = auth.currentUser.displayName?.split(' ')[0];
 
   auth.onAuthStateChanged(user => userName = user.displayName?.split(' ')[0]);
-
-  function signOut(){
-    auth.signOut();
-  }
 
   return (
     <nav
@@ -36,18 +34,11 @@ function Nav() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
-          {!isRunningStandalone && (
-            <>
-              <NavButton title="Home" icon="fas fa-home" link="/" />
-              <NavButton title="Search" icon="fas fa-search" link="/search" />
-              <NavButton
-                title="Records"
-                icon="fas fa-book-open"
-                link="/records"
-              />
-              <NavButton title="Stats" icon="fas fa-chart-line" link="/stats" />
-            </>
-          )}
+
+          <NavButton title="Home" icon="fas fa-home" link="/" />
+          <NavButton title="Search" icon="fas fa-search" link="/search" />
+          <NavButton title="Records" icon="fas fa-book-open" link="/records" />
+          <NavButton title="Stats" icon="fas fa-chart-line" link="/stats" />
 
           <li className="nav-item dropdown">
             <button
@@ -65,14 +56,14 @@ function Nav() {
               {userName}
             </button>
             <div
-              className={`dropdown-menu ${isRunningStandalone && "show"} dropdown-menu-right`}
+              className="dropdown-menu dropdown-menu-right"
               aria-labelledby="navbarDropdownMenuLink"
             >
               <Link to="/settings" className="dropdown-item">
                 <i className="fas fa-cog"></i> Settings
               </Link>
               <div className="dropdown-divider"></div>
-              <button className="dropdown-item" onClick={signOut}>
+              <button className="dropdown-item" onClick={() => auth.signOut()}>
                 <i className="fas fa-sign-out-alt"></i> Logout
               </button>
             </div>

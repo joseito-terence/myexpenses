@@ -6,7 +6,8 @@
   padding: 15px 0;
   background-color: #000000;
   color: white;
-  display: flex;
+  
+  display: none;
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
@@ -38,4 +39,17 @@
 
 .navButton__title {
   font-size: 12px;
+}
+
+@media (display-mode: standalone){
+  .bottomNavBar{
+    display: flex;
+  }
+}
+
+
+@media (min-width: 992px) and (display-mode: standalone){
+  .bottomNavBar{
+    display: none;
+  }
 }

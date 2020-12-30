@@ -4,7 +4,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./App.css";
 import { auth } from "./firebase";
 
-import Nav from "./Components/Nav";
+import Nav from "./Components/Nav/";
 import Home from "./Components/Home";
 import NavBarBottom from "./Components/NavBarBottom/"
 import Search from "./Components/Search";

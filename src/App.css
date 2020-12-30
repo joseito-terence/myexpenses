@@ -78,20 +78,6 @@ tr > td:last-child{
   text-align: center;
 }
 
-.navbar {
-  z-index: 1;
-}
-
-.nav-link img {
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  margin: -8px 0;
-  float: left;
-  margin-right: 10px;
-}
-
-
 .form-control:focus, .btn:focus{
   box-shadow: none;
 }

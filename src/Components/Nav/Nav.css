@@ -1,0 +1,33 @@
+.navbar {
+  z-index: 1;
+}
+
+/* .nav-link img {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin: -8px 0;
+  float: left;
+  margin-right: 10px;
+} */
+
+
+@media (display-mode: standalone){
+  .nav-item.standalone-mode{
+    display: none;
+  }
+}
+
+
+@media (min-width: 992px) and (display-mode: standalone){
+  .nav-item.standalone-mode{
+    display: inline-block;
+  }
+}
+
+@media (max-width: 992px) and (display-mode: standalone){
+  .dropdown-menu{
+    display: block;
+  }
+}
+

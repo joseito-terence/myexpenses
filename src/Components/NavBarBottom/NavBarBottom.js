@@ -7,20 +7,15 @@ import { ReactComponent as SearchIcon } from "../../Icons/search-solid.svg";
 import { ReactComponent as BookIcon } from "../../Icons/book-open-solid.svg";
 import { ReactComponent as StatsIcon } from "../../Icons/chart-line-solid.svg";
 
-function NavBarBottom() {
-  const isRunningStandalone = window.matchMedia("(display-mode: standalone) and (min-width: 992px)").matches;
 
+function NavBarBottom() {
   return (
-    <>
-      {isRunningStandalone && (
-        <div className="bottomNavBar">
-          <NavButton title="Home" icon={<HomeIcon />} link="/" />
-          <NavButton title="Search" icon={<SearchIcon />} link="/search" />
-          <NavButton title="Records" icon={<BookIcon />} link="/records" />
-          <NavButton title="Stats" icon={<StatsIcon />} link="/stats" />
-        </div>
-      )}
-    </>
+    <div className="bottomNavBar">
+      <NavButton title="Home" icon={<HomeIcon />} link="/" />
+      <NavButton title="Search" icon={<SearchIcon />} link="/search" />
+      <NavButton title="Records" icon={<BookIcon />} link="/records" />
+      <NavButton title="Stats" icon={<StatsIcon />} link="/stats" />
+    </div>
   );
 }
 
