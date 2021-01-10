@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import db, { auth } from "../../firebase";
+import db, { auth, deleteRecord } from "../../firebase";
 import { getWeekName, date, computeTotalExpense, currencyFormat } from "../../utility";
 
 function ThisWeek() {
@@ -18,9 +18,19 @@ function ThisWeek() {
       .orderBy("date");
 
     document.querySelector('.thisWeek')
-      .addEventListener('click', async() => {
-        const snap = await query.get();
-        setExpenses(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      .addEventListener('click', () => {
+        const unsubscribe = query.onSnapshot(snap => {                          // attach realtime listener to db.
+          setExpenses(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));  
+        })
+  
+        const closeModalBtn = document.querySelector('div#thisWeek .close');
+  
+        const closeModal = () =>{
+          unsubscribe();                                                       // onClose remove realtime listener.
+          closeModalBtn.removeEventListener('click', closeModal);
+        }
+    
+        closeModalBtn.addEventListener('click', closeModal);                   // remove eventlistener from close button
       });
 
   }, []);
@@ -37,6 +47,7 @@ function ThisWeek() {
             <th scope="col">Day</th>
             <th scope="col">Item</th>
             <th scope="col">Price</th>
+            <th scope="col" style={{ width: '5px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +65,7 @@ function ThisWeek() {
                         <td></td>
                         <td align="right">Total = </td>
                         <td align="right">{currencyFormat(sum)}</td>
+                        <td></td>
                       </tr>
                     )
                   }
@@ -62,6 +74,11 @@ function ThisWeek() {
                     <td>{getWeekName(expense.date)}</td>
                     <td>{expense.itemName}</td>
                     <td align="right">{currencyFormat(sum = expense.price)}</td>
+                    <td align="center">
+                      <button className="btn" onClick={() => deleteRecord(expense.id)}>
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
                   </tr>
                 </React.Fragment>
               );
@@ -74,6 +91,11 @@ function ThisWeek() {
                   <td></td>
                   <td>{expense.itemName}</td>
                   <td align="right">{currencyFormat(expense.price)}</td>
+                  <td align="center">
+                    <button className="btn" onClick={() => deleteRecord(expense.id)}>
+                      <i className="fas fa-trash"></i>
+                    </button>
+                  </td>
                 </tr>
               );
             }
@@ -83,6 +105,7 @@ function ThisWeek() {
             <td></td>
             <td align="right">Total = </td>
             <td align="right">{currencyFormat(sum)}</td>
+            <td></td>
           </tr>
         </tbody>
       </table>

@@ -37,18 +37,20 @@ function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    db.doc(auth.currentUser.uid)
-      .collection("expenses")
-      .add({ 
-        ...state, 
-        price: Number(state.price),
-      });
+    if (state.itemName || state.price) {
+      db.doc(auth.currentUser.uid)
+        .collection("expenses")
+        .add({ 
+          ...state, 
+          price: Number(state.price),
+        });
 
-    //console.log(state);
-    
-    aggregateOnCreate(state);  // Client-side data aggregation.
+      //console.log(state);
+      
+      aggregateOnCreate(state);  // Client-side data aggregation.
 
-    setState(intiial_state);
+      setState(intiial_state);
+    }
   };
 
   return (

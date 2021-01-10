@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import db, { auth } from "../../firebase";
+import db, { auth, deleteRecord } from "../../firebase";
 import { computeTotalExpense, date, currencyFormat } from "../../utility";
 
 function ThisMonth() {
@@ -19,9 +19,19 @@ function ThisMonth() {
       .orderBy("date");
 
     document.querySelector('.thisMonth')
-      .addEventListener('click', async() => {
-        const snap = await query.get();
-        setExpenses(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));  
+      .addEventListener('click', () => {
+        const unsubscribe = query.onSnapshot(snap => {                          // attach realtime listener to db.
+          setExpenses(snap.docs.map((doc) => ({ ...doc.data(), id: doc.id })));  
+        })
+  
+        const closeModalBtn = document.querySelector('div#thisMonth .close');
+  
+        const closeModal = () =>{
+          unsubscribe();                                                       // onClose remove realtime listener.
+          closeModalBtn.removeEventListener('click', closeModal);
+        }
+    
+        closeModalBtn.addEventListener('click', closeModal);                   // remove eventlistener from close button
       });
 
     
@@ -38,6 +48,7 @@ function ThisMonth() {
             <th scope="col"> Date</th>
             <th scope="col">Item</th>
             <th scope="col">Price</th>
+            <th scope="col" style={{ width: '5px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +65,7 @@ function ThisMonth() {
                         <td></td>
                         <td align="right">Total = </td>
                         <td align="right">{currencyFormat(sum)}</td>
+                        <td></td>
                       </tr>
                     )
                   }
@@ -61,6 +73,11 @@ function ThisMonth() {
                     <td>{expense.dd}</td>
                     <td>{expense.itemName}</td>
                     <td align="right">{currencyFormat(sum = expense.price)}</td>
+                    <td align="center">
+                      <button className="btn" onClick={() => deleteRecord(expense.id)}>
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
                   </tr>
                 </React.Fragment>
               );
@@ -72,6 +89,11 @@ function ThisMonth() {
                   <td></td>
                   <td>{expense.itemName}</td>
                   <td align="right">{currencyFormat(expense.price)}</td>
+                  <td align="center">
+                      <button className="btn" onClick={() => deleteRecord(expense.id)}>
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
                 </tr>
               );
             }
@@ -80,6 +102,7 @@ function ThisMonth() {
             <td></td>
             <td align="right">Total = </td>
             <td align="right">{currencyFormat(sum)}</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
