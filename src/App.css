@@ -24,6 +24,10 @@ tr > td:first-child{
 tr > td:last-child{
   padding-right: 10px !important;
 }
+
+td:not(:nth-last-child(2)){
+  word-break: break-all !important;
+}
 /*****************************************************************/
 
 .logo{

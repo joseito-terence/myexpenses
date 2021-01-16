@@ -44,7 +44,7 @@ function ThisWeek() {
         <thead className="thead-dark">
           <tr>
             <th scope="col"> Date</th>
-            <th scope="col">Day</th>
+            <th scope="col" style={{ width: '43px' }}>Day</th>
             <th scope="col">Item</th>
             <th scope="col">Price</th>
             <th scope="col" style={{ width: '5px' }}>Actions</th>
