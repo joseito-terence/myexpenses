@@ -33,14 +33,5 @@ dbRef.enablePersistence({ synchronizeTabs: true })
 
 const db = dbRef.collection('users');
 
-function deleteRecord(id) {
-  if(window.confirm("Confirm Delete", 'Are you sure you want to delete?'))
-    db.doc(auth.currentUser.uid)
-      .collection('expenses')
-      .doc(id)
-      .delete()
-      .catch(error => console.error(error.message));
-}
-
-export { auth, deleteRecord };
+export { auth };
 export default db;

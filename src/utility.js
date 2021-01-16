@@ -1,4 +1,6 @@
 import { weekNumberYearSun as getWeek } from "weeknumber";
+import { aggregateOnDelete } from "./aggregation-utility";
+import db, { auth } from './firebase';
 
 // Function to convert JS Date obj to a sting with format yyyy-mm-dd
 function dateToString(date) {
@@ -62,6 +64,18 @@ function currencyFormat(value, option = false) {
 /*******************************************************/
 
 
+function deleteRecord(expense) {
+  if(window.confirm("Confirm Delete", 'Are you sure you want to delete?'))
+    db.doc(auth.currentUser.uid)
+      .collection('expenses')
+      .doc(expense.id)
+      .delete()
+      .then(() => aggregateOnDelete(expense))
+      .catch(error => console.error(error.message));
+
+}
+
 /* EXPORTS */
 export { computeTotalExpense, currencyFormat };             
-export { dateToString, date, getWeek, getWeekName, getMonthName };     
+export { dateToString, date, getWeek, getWeekName, getMonthName };    
+export { deleteRecord }; 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import db, { auth, deleteRecord } from "../../firebase";
-import { dateToString, computeTotalExpense, currencyFormat } from "../../utility";
+import db, { auth } from "../../firebase";
+import { dateToString, computeTotalExpense, currencyFormat, deleteRecord } from "../../utility";
 
 function Today() {
 
@@ -55,7 +55,7 @@ function Today() {
             <td>{expense.itemName}</td>
             <td align="right">{currencyFormat(expense.price)}</td>
             <td align="center">
-              <button className="btn" onClick={() => deleteRecord(expense.id)}>
+              <button className="btn" onClick={() => deleteRecord(expense)}>
                 <i className="fas fa-trash"></i>
               </button>
             </td>

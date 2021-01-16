@@ -13,9 +13,7 @@ async function aggregateOnCreate(expense) {
   const price = Number(expense.price);
   
   const doc = await db
-    .doc(uid)
-    .collection('aggregation')
-    .doc(`${year}`)
+    .doc(`${uid}/aggregation/${year}`)
     .get();
     
   if (doc.exists) { // check if the year collection exists.
@@ -25,9 +23,7 @@ async function aggregateOnCreate(expense) {
       // if months total already exists.
       monthlyTotal[month] += price;
 
-      db.doc(uid)
-        .collection('aggregation')
-        .doc(`${year}`)
+      db.doc(`${uid}/aggregation/${year}`)
         .set({
           total: total + price,
           monthlyTotal: monthlyTotal,
@@ -35,10 +31,7 @@ async function aggregateOnCreate(expense) {
 
     } else {
       // if months total doesn't exist.
-
-      db.doc(uid)
-        .collection('aggregation')
-        .doc(`${year}`)
+      db.doc(`${uid}/aggregation/${year}`)
         .set({
           total: total + price,
           monthlyTotal: { ...monthlyTotal, [month]: price }
@@ -46,9 +39,7 @@ async function aggregateOnCreate(expense) {
     }
   } else {
     // if year collection doesn't exist
-    db.doc(uid)
-      .collection('aggregation')
-      .doc(`${year}`)
+    db.doc(`${uid}/aggregation/${year}`)
       .set({
         total: price,
         monthlyTotal: { [month]: price }
@@ -57,4 +48,25 @@ async function aggregateOnCreate(expense) {
     
 }
 
-export { aggregateOnCreate };
+
+async function aggregateOnDelete(expense) {
+  const uid = auth.currentUser.uid;
+  const { yyyy:year, mm:month, price }  = expense;
+
+  const doc = await db
+    .doc(`${uid}/aggregation/${year}`)
+    .get();
+
+  const { total, monthlyTotal } = doc.data();    // Get existing records
+
+  db.doc(`${uid}/aggregation/${year}`)
+    .set({
+      total: total - price,                      // perform subtraction
+      monthlyTotal: { 
+        ...monthlyTotal, 
+        [month]: monthlyTotal[month] - price 
+      }
+    })
+}
+
+export { aggregateOnCreate, aggregateOnDelete };

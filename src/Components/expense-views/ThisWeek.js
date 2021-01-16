@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import db, { auth, deleteRecord } from "../../firebase";
-import { getWeekName, date, computeTotalExpense, currencyFormat } from "../../utility";
+import db, { auth } from "../../firebase";
+import { getWeekName, date, computeTotalExpense, currencyFormat, deleteRecord } from "../../utility";
 
 function ThisWeek() {
   const [expenses, setExpenses] = useState([]);
@@ -75,7 +75,7 @@ function ThisWeek() {
                     <td>{expense.itemName}</td>
                     <td align="right">{currencyFormat(sum = expense.price)}</td>
                     <td align="center">
-                      <button className="btn" onClick={() => deleteRecord(expense.id)}>
+                      <button className="btn" onClick={() => deleteRecord(expense)}>
                         <i className="fas fa-trash"></i>
                       </button>
                     </td>
@@ -92,7 +92,7 @@ function ThisWeek() {
                   <td>{expense.itemName}</td>
                   <td align="right">{currencyFormat(expense.price)}</td>
                   <td align="center">
-                    <button className="btn" onClick={() => deleteRecord(expense.id)}>
+                    <button className="btn" onClick={() => deleteRecord(expense)}>
                       <i className="fas fa-trash"></i>
                     </button>
                   </td>
