@@ -14,9 +14,13 @@
 }
 
 .card-body > .accordion button {
-  font-size: 1.25rem;
+  font-size: 1.25rem;   /* for sub-collection(i.e month)  */
 }
 
+.card-body > .accordion .card-body{
+  background: white;
+  padding: 0;
+}
 
 @media screen and (min-width: 992px){
   .records{

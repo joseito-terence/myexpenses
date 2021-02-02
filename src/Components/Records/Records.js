@@ -3,10 +3,19 @@ import './Records.css';
 import db, { auth } from '../../firebase';
 import { currencyFormat, getMonthName } from '../../utility';
 import Accordion from '../../Components/Accordion';
+import MonthlyRecord from './MonthlyRecord';
 
 
 function Records() {
   const [expenseAgg, setExpenseAgg] = useState([]); // Aggregate expense year-wise.
+  const [renderData, setRenderData] = useState({}); // Holds year and month for conditional render
+
+  const getMonthExpenses = (year, month) => {
+    if ((renderData.month === month && renderData.year === year))
+      setRenderData({});
+    else
+      setRenderData({ year, month });
+  }
 
   useEffect(() => {
     const unsubscribe = db
@@ -45,8 +54,13 @@ function Records() {
                           key={key}
                           id={`Month${key}`}
                           headerText={`${getMonthName(key)} [${currencyFormat(value, true)} ]`}
+                          getMonthExpenses={() => getMonthExpenses(doc.id, key)}
                         >
-                          
+                          <MonthlyRecord 
+                            year={doc.id} 
+                            month={key} 
+                            renderData={renderData} 
+                          />
                         </Accordion.Item>
                       )
                   )}

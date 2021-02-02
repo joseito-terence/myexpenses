@@ -1,6 +1,6 @@
 import React from "react";
 
-function AccordianItem({ id, headerText, children, parentId }) {
+function AccordianItem({ id, headerText, children, parentId, getMonthExpenses }) {
   return (
     <div className="card">
       <div className="card-header" id={`heading${id}`}>
@@ -12,6 +12,7 @@ function AccordianItem({ id, headerText, children, parentId }) {
             data-target={`#collapse${id}`}
             aria-expanded="true"
             aria-controls={`collapse${id}`}
+            onClick={getMonthExpenses}
           >
             {headerText}
           </button>
