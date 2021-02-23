@@ -49,7 +49,11 @@ function Home() {
       
       aggregateOnCreate(state);  // Client-side data aggregation.
 
-      setState({ ...intiial_state, date: state.date });
+      setState({ 
+        ...intiial_state, 
+        date: state.date,
+        ...date(new Date(state.date)),
+      });
     }
   };
 

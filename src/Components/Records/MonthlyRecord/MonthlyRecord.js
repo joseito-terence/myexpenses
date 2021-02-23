@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import db, { auth } from "../../../firebase";
-import { currencyFormat, deleteRecord } from '../../../utility';
+import { computeTotalExpense, currencyFormat, deleteRecord } from '../../../utility';
 
 function MonthlyRecord({ year, month, renderData }) {
   const [expenses, setExpenses] = useState([]);
@@ -28,6 +28,7 @@ function MonthlyRecord({ year, month, renderData }) {
     }
   }, [renderData]);
 
+  console.log(computeTotalExpense(expenses))
 
   return (renderCondition) && (
       <table className="table table-striped table-sm">
